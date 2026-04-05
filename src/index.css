@@ -1,13 +1,61 @@
+:root {
+  --theme-body-bg: #0f0f1a;
+  --theme-body-txt: #ffffff;
+  --brand-color_1: #00d9ff;
+  --brand-color_2: #ff6b6b;
+  --brand-color_3: #4ecdc4;
+  --brand-color_4: #ffe66d;
+  --brand-color_5: #a18cd1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--theme-body-bg);
+  color: var(--theme-body-txt);
+  line-height: 1.5;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Focus visible styles for accessibility */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid #09f;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+button,
+a,
+input {
+  transition: all 0.3s ease;
+}
+
+/* Remove default button styles */
+button {
+  font-family: inherit;
+}
+
+/* Image loading placeholder */
+img {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }

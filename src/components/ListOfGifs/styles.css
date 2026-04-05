@@ -1,19 +1,82 @@
 :root {
   --results-columns: 2;
+  --gridList-gap: 6px;
+  --brand-color_1: #00d9ff;
+  --brand-color_2: #ff6b6b;
+  --brand-color_3: #4ecdc4;
+  --brand-color_4: #ffe66d;
+  --brand-color_5: #a18cd1;
 }
 
 .ListOfGifs {
-  column-count: var(--results-columns);
-  column-gap: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(var(--results-columns), 1fr);
+  gap: var(--gridList-gap);
+  min-height: 100vh;
+  align-items: stretch;
 }
 
 .ListOfGifs-item {
-  -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
-  page-break-inside: avoid; /* Firefox */
-  break-inside: avoid; /* IE 10+ */
   background-color: #eee;
-  display: inline-block;
-  width: 100%;
+  position: relative;
+}
+
+.ListOfGifs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+}
+
+.ListOfGifs-empty-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.ListOfGifs-empty p {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.ListOfGifs-empty small {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.ListOfGifs-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  gap: 1rem;
+}
+
+.ListOfGifs-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #09f;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ListOfGifs-loading span {
+  font-size: 0.95rem;
+  opacity: 0.8;
 }
 
 @media (min-width: 600px) {
@@ -25,5 +88,11 @@
 @media (min-width: 800px) {
   :root {
     --results-columns: 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --results-columns: 5;
   }
 }

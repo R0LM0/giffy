@@ -1,0 +1,143 @@
+.Detail {
+  min-height: 100vh;
+}
+
+.Detail-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.Detail-back-link:hover {
+  color: #09f;
+}
+
+.Detail-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Detail-figure {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Detail-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.Detail-caption {
+  padding: 1.5rem;
+}
+
+.Detail-title {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.Detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.Detail-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.Detail-button--primary {
+  background: linear-gradient(135deg, #09f 0%, #0066cc 100%);
+  color: white;
+}
+
+.Detail-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 153, 255, 0.4);
+}
+
+.Detail-button--secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.Detail-button--secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.Detail-loading,
+.Detail-error,
+.Detail-notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.Detail-loading p,
+.Detail-error p,
+.Detail-notfound p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.Detail-error span,
+.Detail-notfound span {
+  font-size: 4rem;
+}
+
+.Detail-back {
+  margin-top: 1.5rem;
+  color: #09f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.Detail-back:hover {
+  color: #33adff;
+}
+
+@media (max-width: 600px) {
+  .Detail-title {
+    font-size: 1.25rem;
+  }
+
+  .Detail-actions {
+    flex-direction: column;
+  }
+
+  .Detail-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

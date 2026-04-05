@@ -1,26 +1,74 @@
-import { useContext, useEffect, useState } from 'react'
-import getGifs from '../services/Giffys/getGits'
-import GifsContext from '../context/GifsContext'
+import { useCallback, useContext, useEffect, useState } from 'react';
+import getGifs, { getTrendingGifs } from '../services/Giffys/getGits';
+import GifsContext from '../context/GifsContext';
 
-export function useGifs({ keyword } = { keyword: null }) {
-    const [loading, setLoading] = useState(false)
-    const { gifs, setGifs } = useContext(GifsContext)
+const INITIAL_PAGE = 0;
 
+export function useGifs({ keyword, trending = false } = { keyword: null }) {
+  const [loading, setLoading] = useState(false);
+  const [loadingNextPage, setLoadingNextPage] = useState(false);
+  const [page, setPage] = useState(INITIAL_PAGE);
+  const [error, setError] = useState(null);
+  const { gifs, setGifs } = useContext(GifsContext);
 
-    useEffect(function () {
-        setLoading(true)
-        // recuperamos la keyword de localstorage
-        const keywordToUse = keyword || localStorage.getItem('lastKeyword')
+  // Determinar qué keyword usar
+  const keywordToUse =
+    keyword || localStorage.getItem('lastKeyword') || 'random';
 
+  // Cargar GIFs iniciales
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
-        getGifs({ keyword: keywordToUse })
-            .then(gifs => {
-                setGifs(gifs)
-                setLoading(false)
-                //guardamos la kwyword en el localStorage
-                localStorage.setItem('lastKeyword', keyword)
-            })
-    }, [keyword, setGifs])
+    const fetchGifs = trending
+      ? getTrendingGifs({ limit: 10 })
+      : getGifs({ keyword: keywordToUse, limit: 10 });
 
-    return { loading, gifs }
+    fetchGifs
+      .then((gifs) => {
+        setGifs(gifs);
+        setLoading(false);
+        if (keyword) {
+          localStorage.setItem('lastKeyword', keyword);
+        }
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [keyword, keywordToUse, trending, setGifs]);
+
+  // Cargar más GIFs (paginación infinita)
+  useEffect(() => {
+    if (page === INITIAL_PAGE) return;
+
+    setLoadingNextPage(true);
+
+    const fetchMoreGifs = trending
+      ? getTrendingGifs({ page, limit: 10 })
+      : getGifs({ keyword: keywordToUse, page, limit: 10 });
+
+    fetchMoreGifs
+      .then((nextGifs) => {
+        setGifs((prevGifs) => prevGifs.concat(nextGifs));
+        setLoadingNextPage(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoadingNextPage(false);
+      });
+  }, [page, keywordToUse, trending, setGifs]);
+
+  const handleNextPage = useCallback(() => {
+    setPage((prevPage) => prevPage + 1);
+  }, []);
+
+  return {
+    loading,
+    loadingNextPage,
+    gifs,
+    error,
+    setPage,
+    handleNextPage,
+  };
 }

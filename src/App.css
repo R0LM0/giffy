@@ -1,37 +1,144 @@
+:root {
+  --theme-body-bg: #0f0f1a;
+  --theme-body-txt: #ffffff;
+  --brand-color_1: #00d9ff;
+  --brand-color_2: #ff6b6b;
+  --brand-color_3: #4ecdc4;
+  --brand-color_4: #ffe66d;
+  --brand-color_5: #a18cd1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--theme-body-bg);
+  color: var(--theme-body-txt);
+}
+
 .App {
-  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background: linear-gradient(135deg, rgba(0, 153, 255, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.App-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  width: fit-content;
 }
 
 .App-logo {
-  margin: 10px auto;
-  padding: 20px 0;
-  width: 144px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.App-logo img {
-  object-fit: cover;
-  width: 100%;
+.App-logo-link:hover .App-logo {
+  transform: scale(1.05) rotate(-5deg);
 }
 
-.App-title {
-  color: var(--theme-body-txt);
-  margin-top: 0.6rem;
+.App-brand {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, #09f 0%, #00d9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .App-content {
-  /*background-color: #282c34;*/
+  flex: 1;
   background-color: var(--theme-body-bg);
   color: var(--theme-body-txt);
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  min-height: 100vh;
-  padding: 16px;
-  text-align: left;
+  padding: 2rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.App-footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.App-footer p {
+  margin: 0 0 0.5rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.App-footer small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
 }
 
 a {
   color: #09f;
   text-decoration: none;
-  font-size: 35px;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #33adff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 153, 255, 0.3);
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .App-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .App-brand {
+    font-size: 1.5rem;
+  }
+
+  .App-logo {
+    width: 40px;
+    height: 40px;
+  }
 }

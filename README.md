@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# 🎨 Giffy - Buscador de GIFs Profesional
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-17.0.2-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![CSS3](https://img.shields.io/badge/CSS3-Modern-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-## Available Scripts
+Un buscador de GIFs moderno, rápido y responsivo construido con **React** y la API de **Giphy**.
 
-In the project directory, you can run:
+🔗 **[Ver Demo en Vivo](https://TU_USUARIO.github.io/giffy)**
 
-### `npm start`
+![Screenshot](https://via.placeholder.com/800x400/0f0f1a/09f?text=Giffy+Screenshot)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Características
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🔍 **Búsqueda en tiempo real** de GIFs
+- 🔥 **Trending GIFs** actualizados
+- 📜 **Paginación infinita** (scroll infinito)
+- 🖼️ **Lazy loading** de imágenes
+- 🎨 **UI Moderna** con modo oscuro
+- ⚡ **Alto rendimiento** con Intersection Observer
+- ♿ **Accesible** (ARIA labels, navegación por teclado)
+- 🛡️ **Error Boundaries** para manejo de errores
+- 📱 **100% Responsivo**
+- 🔄 **Caché local** con localStorage
 
-### `npm test`
+## 🚀 Tecnologías
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React 17** - Framework UI
+- **Wouter** - Router ligero
+- **Intersection Observer API** - Lazy loading
+- **Giphy API** - Fuente de datos
+- **CSS3** - Estilos modernos
+- **Jest + React Testing Library** - Testing
 
-### `npm run build`
+## 📦 Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Clonar el repositorio
+git clone https://github.com/TU_USUARIO/giffy.git
+cd giffy
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Instalar dependencias
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Crear archivo .env con tu API key de Giphy
+echo "REACT_APP_GIPHY_API_KEY=tu_api_key_aqui" > .env
 
-### `npm run eject`
+# Iniciar servidor de desarrollo
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> 🔑 Obtén tu API key gratuita en [developers.giphy.com](https://developers.giphy.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🌐 Despliegue
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### GitHub Pages
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+# Configurar tu usuario en package.json
+# "homepage": "https://TU_USUARIO.github.io/giffy"
 
-## Learn More
+# Desplegar
+npm run deploy
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Vercel / Netlify
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Simplemente conecta tu repositorio y configura la variable de entorno `REACT_APP_GIPHY_API_KEY`.
 
-### Code Splitting
+## 📁 Estructura del Proyecto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+giffy/
+├── public/
+│   ├── 404.html          # Redirección para SPA
+│   ├── index.html        # HTML principal
+│   └── ...
+├── src/
+│   ├── components/       # Componentes reutilizables
+│   │   ├── ErrorBoundary/
+│   │   ├── Gif/
+│   │   ├── ListOfGifs/
+│   │   ├── LazyTrending/
+│   │   └── Spinner/
+│   ├── context/          # Context API (GifsContext)
+│   ├── hooks/            # Custom hooks
+│   │   ├── useGifs.js
+│   │   ├── useNearScreen.js
+│   │   └── useSingleGif.js
+│   ├── pages/            # Páginas de la app
+│   │   ├── Home/
+│   │   ├── SearchResults/
+│   │   └── Detail/
+│   ├── services/         # Servicios de API
+│   │   └── Giffys/
+│   ├── App.js
+│   └── index.js
+├── .env.example
+├── DEPLOY.md
+└── package.json
+```
 
-### Analyzing the Bundle Size
+## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# Ejecutar tests
+npm test
 
-### Making a Progressive Web App
+# Coverage
+npm test -- --coverage
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🎨 Mejoras Implementadas
 
-### Advanced Configuration
+| Aspecto | Implementación |
+|---------|---------------|
+| **Seguridad** | Variables de entorno para API keys |
+| **Performance** | Lazy loading + Paginación infinita |
+| **UX** | Loading states, empty states, error handling |
+| **Accesibilidad** | ARIA labels, focus visible, semantic HTML |
+| **Diseño** | Modo oscuro, gradientes, animaciones suaves |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📝 Scripts Disponibles
 
-### Deployment
+| Comando | Descripción |
+|---------|-------------|
+| `npm start` | Servidor de desarrollo |
+| `npm run build` | Build de producción |
+| `npm test` | Ejecutar tests |
+| `npm run deploy` | Desplegar a GitHub Pages |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🤝 Contribuir
 
-### `npm run build` fails to minify
+Las contribuciones son bienvenidas. Por favor abre un issue primero para discutir los cambios.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📄 Licencia
+
+MIT License - Libre para uso personal y comercial.
+
+---
+
+⭐ Si te gustó este proyecto, ¡dale una estrella en GitHub!
+
+**Hecho con ❤️ para mi portfolio**
