@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import ListOfGifs from '../../components/ListOfGifs';
-import Spinner from '../../components/Spinner';
+import { SkeletonList } from '../../components/Skeleton';
 import LazyTrending from '../../components/LazyTrending';
 import { useGifs } from '../../hooks/useGifs';
 import './styles.css';
@@ -36,7 +36,7 @@ export default function Home() {
       <h2 className="Home-title">🔥 Trending GIFs</h2>
 
       {loading && gifs.length === 0 ? (
-        <Spinner />
+        <SkeletonList count={10} />
       ) : (
         <ListOfGifs
           gifs={gifs}

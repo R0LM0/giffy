@@ -5,6 +5,24 @@ import Spinner from '../../components/Spinner';
 import Toast from '../../components/Toast';
 import './styles.css';
 
+const icons = {
+  link: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  ),
+  share: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+    </svg>
+  ),
+};
+
 export default function Detail({ params }) {
   const { id } = params;
   const { gif, loading, error } = useSingleGif({ id });
@@ -24,13 +42,13 @@ export default function Detail({ params }) {
       await navigator.clipboard.writeText(window.location.href);
       setToast({
         show: true,
-        message: '¡Enlace copiado al portapapeles!',
+        message: 'Enlace copiado al portapapeles',
         type: 'success'
       });
     } catch (err) {
       setToast({
         show: true,
-        message: 'Error al copiar el enlace',
+        message: 'No se pudo copiar el enlace',
         type: 'error'
       });
     }
@@ -52,7 +70,11 @@ export default function Detail({ params }) {
   if (error) {
     return (
       <div className="Detail-error" role="alert">
-        <span aria-hidden="true">⚠️</span>
+        <svg className="Detail-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
         <p>{error}</p>
         <Link to="/" className="Detail-back">← Volver al inicio</Link>
       </div>
@@ -62,7 +84,10 @@ export default function Detail({ params }) {
   if (!gif) {
     return (
       <div className="Detail-notfound" role="status">
-        <span aria-hidden="true">🔍</span>
+        <svg className="Detail-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
         <p>GIF no encontrado</p>
         <Link to="/" className="Detail-back">← Volver al inicio</Link>
       </div>
@@ -98,14 +123,16 @@ export default function Detail({ params }) {
               className="Detail-button Detail-button--primary"
               aria-label="Ver GIF original"
             >
-              🔗 Ver Original
+              <span className="Detail-button-icon">{icons.link}</span>
+              Ver Original
             </a>
             <button
               onClick={handleShare}
               className="Detail-button Detail-button--secondary"
               aria-label="Copiar enlace"
             >
-              📋 Compartir
+              <span className="Detail-button-icon">{icons.share}</span>
+              Compartir
             </button>
           </div>
         </div>

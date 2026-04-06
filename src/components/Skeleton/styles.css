@@ -1,0 +1,89 @@
+.SkeletonList {
+  display: grid;
+  grid-template-columns: repeat(var(--results-columns, 2), 1fr);
+  gap: 6px;
+}
+
+.GifSkeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  aspect-ratio: 1/1;
+}
+
+.GifSkeleton-image {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.GifSkeleton-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Masonry effect for skeletons */
+.SkeletonList .GifSkeleton:nth-child(11n + 1) {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.SkeletonList .GifSkeleton:nth-child(8n + 1) {
+  grid-column-end: span 2;
+  grid-row-end: span 2;
+}
+
+@media screen and (max-width: 45rem) {
+  .SkeletonList .GifSkeleton:nth-child(11n + 1),
+  .SkeletonList .GifSkeleton:nth-child(8n + 1) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* Responsive columns */
+@media (min-width: 600px) {
+  .SkeletonList {
+    --results-columns: 3;
+  }
+}
+
+@media (min-width: 800px) {
+  .SkeletonList {
+    --results-columns: 4;
+  }
+}
+
+@media (min-width: 1200px) {
+  .SkeletonList {
+    --results-columns: 5;
+  }
+}
