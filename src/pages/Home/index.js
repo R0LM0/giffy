@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'wouter';
 import ListOfGifs from '../../components/ListOfGifs';
 import { SkeletonList } from '../../components/Skeleton';
 import LazyTrending from '../../components/LazyTrending';
 import { useGifs } from '../../hooks/useGifs';
+import { PandaIcon, ScienceIcon, MatrixIcon, CodeIcon, DanceIcon, FireIcon } from '../../components/Icons';
 import './styles.css';
 
-const POPULAR_GIFS = ['Panda', 'Rick', 'Matrix', 'Programming', 'Dance'];
+const POPULAR_GIFS = [
+  { name: 'Panda', icon: PandaIcon },
+  { name: 'Rick', icon: ScienceIcon },
+  { name: 'Matrix', icon: MatrixIcon },
+  { name: 'Programming', icon: CodeIcon },
+  { name: 'Dance', icon: DanceIcon },
+];
 
 export default function Home() {
   const [, pushLocation] = useLocation();
@@ -33,7 +40,9 @@ export default function Home() {
     <>
       <LazyTrending />
 
-      <h2 className="Home-title">🔥 Trending GIFs</h2>
+      <h2 className="Home-title">
+        <FireIcon /> Trending GIFs
+      </h2>
 
       {loading && gifs.length === 0 ? (
         <SkeletonList count={10} />
@@ -47,20 +56,20 @@ export default function Home() {
 
       <section className="Home-popular" aria-labelledby="popular-title">
         <h3 id="popular-title" className="Home-popular-title">
-          💫 Búsquedas Populares
+          Búsquedas Populares
         </h3>
         <ul className="Home-popular-list">
-          {POPULAR_GIFS.map((popularGif) => (
-            <li key={popularGif} className="Home-popular-item">
+          {POPULAR_GIFS.map(({ name, icon: Icon }) => (
+            <li key={name} className="Home-popular-item">
               <Link
-                to={`/search/${popularGif}`}
+                to={`/search/${name}`}
                 className="Home-popular-link"
-                aria-label={`Ver GIFs de ${popularGif}`}
+                aria-label={`Ver GIFs de ${name}`}
               >
                 <span className="Home-popular-icon" aria-hidden="true">
-                  🎯
+                  <Icon />
                 </span>
-                {popularGif}
+                {name}
               </Link>
             </li>
           ))}
