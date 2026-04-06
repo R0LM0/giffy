@@ -1,6 +1,6 @@
 const API_URL = 'https://api.giphy.com/v1/gifs';
 // Fallback API key - Reemplaza con tu propia key de Giphy
-const FALLBACK_API_KEY = 'Tv6Ybqzpl4BppqGPfLglaZmPofwggTTh';
+const FALLBACK_API_KEY = 'YnRO4T97jlyZKMOtIVpxgqbmAY1VuIxo';
 
 const fromApiResponseToGifs = (apiResponse) => {
   const { data = [] } = apiResponse;
