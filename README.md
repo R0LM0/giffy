@@ -12,14 +12,7 @@ Un buscador de GIFs moderno, rápido y responsivo construido con **React** y la 
 
 ## 🖼️ Preview
 
-> **Nota:** Agrega aquí screenshots de tu proyecto
-> 
-> Para agregar un screenshot:
-> 1. Toma una captura de pantalla de tu app
-> 2. Guárdala en la carpeta `public/` como `preview.png`
-> 3. Descomenta la línea de abajo
-
-<!-- ![Giffy Preview](./public/preview.png) -->
+![Giffy Preview](./public/preview.webp)
 
 ---
 
