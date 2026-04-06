@@ -8,7 +8,18 @@ Un buscador de GIFs moderno, rápido y responsivo construido con **React** y la 
 
 🔗 **[Ver Demo en Vivo](https://giffy-jade-chi.vercel.app/)**
 
-![Giffy Preview](https://via.placeholder.com/800x400/0f0f1a/09f?text=Giffy+Preview)
+---
+
+## 🖼️ Preview
+
+> **Nota:** Agrega aquí screenshots de tu proyecto
+> 
+> Para agregar un screenshot:
+> 1. Toma una captura de pantalla de tu app
+> 2. Guárdala en la carpeta `public/` como `preview.png`
+> 3. Descomenta la línea de abajo
+
+<!-- ![Giffy Preview](./public/preview.png) -->
 
 ---
 
@@ -155,14 +166,6 @@ npm test -- --coverage
 - **Simple**: Estado pequeño, no necesita Redux
 - **Built-in**: Ya viene con React
 - **Suficiente**: Para este caso de uso es perfecto
-
----
-
-## 📸 Screenshots
-
-| Home | Search | Detail |
-|------|--------|--------|
-| ![Home](https://via.placeholder.com/300x200/0f0f1a/09f?text=Home) | ![Search](https://via.placeholder.com/300x200/0f0f1a/09f?text=Search) | ![Detail](https://via.placeholder.com/300x200/0f0f1a/09f?text=Detail) |
 
 ---
 
