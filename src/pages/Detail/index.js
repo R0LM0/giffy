@@ -8,7 +8,6 @@ export default function Detail({ params }) {
   const { id } = params;
   const { gif, loading, error } = useSingleGif({ id });
 
-  // Actualizar el título de la página
   useEffect(() => {
     if (gif?.title) {
       document.title = `${gif.title} | Giffy`;
@@ -32,9 +31,7 @@ export default function Detail({ params }) {
       <div className="Detail-error" role="alert">
         <span aria-hidden="true">⚠️</span>
         <p>{error}</p>
-        <Link to="/" className="Detail-back">
-          ← Volver al inicio
-        </Link>
+        <Link to="/" className="Detail-back">← Volver al inicio</Link>
       </div>
     );
   }
@@ -44,9 +41,7 @@ export default function Detail({ params }) {
       <div className="Detail-notfound" role="status">
         <span aria-hidden="true">🔍</span>
         <p>GIF no encontrado</p>
-        <Link to="/" className="Detail-back">
-          ← Volver al inicio
-        </Link>
+        <Link to="/" className="Detail-back">← Volver al inicio</Link>
       </div>
     );
   }
@@ -64,10 +59,6 @@ export default function Detail({ params }) {
 
   return (
     <article className="Detail" aria-label={`Detalle de ${title}`}>
-      <Link to="/" className="Detail-back-link" aria-label="Volver al inicio">
-        ← Volver
-      </Link>
-
       <div className="Detail-content">
         <figure className="Detail-figure">
           <img
@@ -75,6 +66,9 @@ export default function Detail({ params }) {
             alt={title || 'GIF sin título'}
             className="Detail-image"
             loading="eager"
+            width="600"
+            height="600"
+            style={{ aspectRatio: '1/1' }}
           />
           <figcaption className="Detail-caption">
             <h1 className="Detail-title">{title || 'Sin título'}</h1>

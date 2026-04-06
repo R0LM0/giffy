@@ -11,7 +11,6 @@ export default function SearchResults({ params }) {
     keyword: decodedKeyword,
   });
 
-  // Actualizar el título de la página
   useEffect(() => {
     document.title = `${decodedKeyword} | Giffy Search`;
     return () => {
@@ -33,9 +32,7 @@ export default function SearchResults({ params }) {
     <section className="SearchResults" aria-label={`Resultados para ${decodedKeyword}`}>
       <header className="SearchResults-header">
         <h1 className="SearchResults-title">
-          <span role="img" aria-label="Buscar">
-            🔍
-          </span>{' '}
+          <span role="img" aria-label="Buscar">🔍</span>{' '}
           Resultados para: <span className="SearchResults-keyword">"{decodedKeyword}"</span>
         </h1>
         {gifs.length > 0 && (
@@ -46,7 +43,7 @@ export default function SearchResults({ params }) {
         )}
       </header>
 
-      {loading ? (
+      {loading && gifs.length === 0 ? (
         <Spinner />
       ) : (
         <ListOfGifs

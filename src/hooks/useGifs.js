@@ -15,8 +15,11 @@ export function useGifs({ keyword, trending = false } = { keyword: null }) {
   const keywordToUse =
     keyword || localStorage.getItem('lastKeyword') || 'random';
 
-  // Cargar GIFs iniciales
+  // Cargar GIFs iniciales - solo cuando cambia keyword o trending
   useEffect(() => {
+    // Resetear gifs cuando cambia la búsqueda
+    setGifs([]);
+    setPage(INITIAL_PAGE);
     setLoading(true);
     setError(null);
 
@@ -36,9 +39,10 @@ export function useGifs({ keyword, trending = false } = { keyword: null }) {
         setError(err.message);
         setLoading(false);
       });
-  }, [keyword, keywordToUse, trending, setGifs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [keyword, trending]);
 
-  // Cargar más GIFs (paginación infinita)
+  // Cargar más GIFs (paginación infinita) - solo cuando cambia page
   useEffect(() => {
     if (page === INITIAL_PAGE) return;
 
@@ -57,11 +61,13 @@ export function useGifs({ keyword, trending = false } = { keyword: null }) {
         setError(err.message);
         setLoadingNextPage(false);
       });
-  }, [page, keywordToUse, trending, setGifs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   const handleNextPage = useCallback(() => {
+    if (loadingNextPage) return; // Evitar múltiples llamadas
     setPage((prevPage) => prevPage + 1);
-  }, []);
+  }, [loadingNextPage]);
 
   return {
     loading,

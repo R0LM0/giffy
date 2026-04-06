@@ -1,4 +1,6 @@
-const API_URL = process.env.REACT_APP_GIPHY_API_URL || 'https://api.giphy.com/v1/gifs';
+const API_URL = 'https://api.giphy.com/v1/gifs';
+// Fallback API key - Reemplaza con tu propia key de Giphy
+const FALLBACK_API_KEY = 'Tv6Ybqzpl4BppqGPfLglaZmPofwggTTh';
 
 const fromApiResponseToGifs = (apiResponse) => {
   const { data = [] } = apiResponse;
@@ -14,9 +16,10 @@ const fromApiResponseToGifs = (apiResponse) => {
 };
 
 const getApiKey = () => {
-  const apiKey = process.env.REACT_APP_GIPHY_API_KEY;
+  // Intenta leer de variables de entorno, si no, usa el fallback
+  const apiKey = process.env.REACT_APP_GIPHY_API_KEY || FALLBACK_API_KEY;
   if (!apiKey) {
-    throw new Error('REACT_APP_GIPHY_API_KEY is not defined. Please check your .env file.');
+    throw new Error('API Key no encontrada. Crea un archivo .env con REACT_APP_GIPHY_API_KEY=');
   }
   return apiKey;
 };

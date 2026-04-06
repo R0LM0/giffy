@@ -1,19 +1,30 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useEffect } from 'react';
 import Gif from '../Gif';
 import './styles.css';
 
 export default function ListOfGifs({ gifs, loadingNextPage, onEndReached }) {
   const observerRef = useRef();
+  const isFetchingRef = useRef(false);
+
+  // Resetear el flag cuando cambia loadingNextPage
+  useEffect(() => {
+    if (!loadingNextPage) {
+      isFetchingRef.current = false;
+    }
+  }, [loadingNextPage]);
 
   const lastGifRef = useCallback(
     (node) => {
-      if (loadingNextPage) return;
+      if (loadingNextPage || isFetchingRef.current) return;
       if (observerRef.current) observerRef.current.disconnect();
 
       observerRef.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && onEndReached) {
+        if (entries[0].isIntersecting && onEndReached && !isFetchingRef.current) {
+          isFetchingRef.current = true;
           onEndReached();
         }
+      }, {
+        rootMargin: '100px',
       });
 
       if (node) observerRef.current.observe(node);
