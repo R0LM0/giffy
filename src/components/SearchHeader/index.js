@@ -5,7 +5,7 @@ import './styles.css';
 export default function SearchHeader({ showBack = false }) {
   const [keyword, setKeyword] = useState('');
   const [, pushLocation] = useLocation();
-  const [location] = useLocation();
+  
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'wouter';
+import { Link } from 'wouter';
 import ListOfGifs from '../../components/ListOfGifs';
 import { SkeletonList } from '../../components/Skeleton';
 import LazyTrending from '../../components/LazyTrending';
@@ -16,7 +16,7 @@ const POPULAR_GIFS = [
 ];
 
 export default function Home() {
-  const [, pushLocation] = useLocation();
+  
   const { loading, gifs, error, handleNextPage, loadingNextPage } = useGifs({
     trending: true,
   });
